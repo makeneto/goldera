@@ -138,9 +138,13 @@ export default function Form() {
                 </div>
             </div>
 
-            {!isFormFilled() ? <img src="/gold-bar.jpg" className="gold-bars" alt="Gold Bars" />
-            
-            : (
+            {!isFormFilled() ? (
+                <img
+                    src="/gold-bar.jpg"
+                    className="gold-bars"
+                    alt="Gold Bars"
+                />
+            ) : (
                 <>
                     <p className="goldPrice">
                         <CircleDollarSign /> Este ouro custa{" "}
@@ -149,16 +153,16 @@ export default function Form() {
 
                     <div className="form__amountPaid">
                         <div>
-                            <label htmlFor="name">
+                            <label htmlFor="amountPaid">
                                 <p>Valor pago ao cliente</p>
                                 <input
                                     type="number"
                                     placeholder="0.00"
-                                    name="igrams"
-                                    id="grams"
+                                    name="amountPaid"
+                                    id="amountPaid"
                                     onChange={(e) =>
                                         setAmountPaid(
-                                            Math.max(0, Number(e.target.value))
+                                            Math.max(0, Number(e.target.value)),
                                         )
                                     }
                                 />

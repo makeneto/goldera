@@ -205,6 +205,7 @@ input[type=number] {
 .summary__content div h2 {
   font-size: 0.8rem;
   color: rgba(11, 61, 46, 0.5137254902);
+  font-weight: 500;
 }
 .summary__content div p {
   color: #0b3d2e;
