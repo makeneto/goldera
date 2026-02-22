@@ -1,0 +1,43 @@
+.summary {
+    margin-top: 4rem;
+    border-radius: 1.5rem;
+    padding-block: 2rem 3rem;
+    width: 100%;
+    background-color: rgba(212, 175, 55, 0.226);
+
+    & h1 {
+        font-size: 1rem;
+        padding-inline: 2.5rem;
+    }
+
+    &__content {
+
+        & article {
+            margin-top: 2.5rem;
+            display: grid;
+            padding-inline: 2.5rem;
+            gap: 1.5rem;
+        }
+
+        & article:last-child {
+            padding-top: 2.5rem;
+            border-top: 1px dotted #0b3d2e42;
+        }
+
+        & div {
+            display: flex;
+            justify-content: space-between;
+
+            & h2 {
+                font-size: .8rem;
+                color: #0b3d2e83;
+            }
+
+            & p {
+                color: #0b3d2e;
+                font-size: .8rem;
+                font-weight: bold;
+            }
+        }
+    }
+}

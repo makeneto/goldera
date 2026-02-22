@@ -1,0 +1,208 @@
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Google Sans", serif;
+  padding: 3rem 1rem;
+  color: #06221a;
+}
+
+@supports (-webkit-touch-callout: none) {
+  input,
+  textarea,
+  select {
+    font-size: inherit;
+  }
+}
+button {
+  width: 100%;
+  font-family: inherit;
+  border: none;
+  font-weight: 500;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.55rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease-in;
+}
+button:hover {
+  filter: brightness(88%);
+}
+
+input {
+  width: 100%;
+  font-family: inherit;
+  color: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  outline: none;
+  border: 0.1rem solid #D0D0D0;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.55rem;
+}
+input::placeholder {
+  font-weight: 500;
+}
+input:focus {
+  outline: 2px solid #06221a;
+}
+
+input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.form {
+  margin-top: 4rem;
+}
+.form__container {
+  display: grid;
+  gap: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+.form__container > div:first-child {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  gap: 1rem;
+  width: 100%;
+}
+.form__container label {
+  display: grid;
+  gap: 0.8rem;
+}
+.form__container label p {
+  font-weight: 500;
+  font-size: 0.92rem;
+}
+.form__karats {
+  display: grid;
+  gap: 0.8rem;
+}
+.form__karats p {
+  font-weight: 500;
+  font-size: 0.92rem;
+}
+.form__karats div {
+  width: 100%;
+  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 600px;
+  margin: 0 auto;
+}
+.form__karats span {
+  text-align: center;
+  padding: 0.6rem;
+  border: 0.1rem solid #D0D0D0;
+  border-radius: 0.55rem;
+  user-select: none;
+  cursor: pointer;
+}
+.form__amountPaid {
+  display: grid;
+  gap: 1.2rem;
+  width: 70%;
+  margin: 2.3rem auto 0;
+}
+.form__amountPaid label {
+  display: grid;
+  gap: 0.8rem;
+}
+.form__amountPaid label p {
+  font-weight: 500;
+  font-size: 0.92rem;
+  text-align: center;
+}
+.form__amountPaid button {
+  background-color: #D4AF37;
+  color: #0B3D2E;
+}
+
+.not-null {
+  color: red;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.goldPrice {
+  margin-top: 2.3rem;
+  color: #77621E;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 0.1rem dotted rgba(6, 34, 26, 0.2549019608);
+  padding-bottom: 2.3rem;
+}
+.goldPrice span {
+  font-weight: bold;
+}
+.goldPrice svg {
+  width: 1rem;
+  height: auto;
+}
+
+.header {
+  display: grid;
+  gap: 2.3rem;
+}
+.header h1 {
+  font-size: 1.4rem;
+  color: #06221a;
+}
+.header h1 span {
+  font-family: "Playfair Display", serif !important;
+  font-style: italic;
+}
+
+.summary {
+  margin-top: 4rem;
+  border-radius: 1.5rem;
+  padding-block: 2rem 3rem;
+  width: 100%;
+  background-color: rgba(212, 175, 55, 0.226);
+}
+.summary h1 {
+  font-size: 1rem;
+  padding-inline: 2.5rem;
+}
+.summary__content article {
+  margin-top: 2.5rem;
+  display: grid;
+  padding-inline: 2.5rem;
+  gap: 1.5rem;
+}
+.summary__content article:last-child {
+  padding-top: 2.5rem;
+  border-top: 1px dotted rgba(11, 61, 46, 0.2588235294);
+}
+.summary__content div {
+  display: flex;
+  justify-content: space-between;
+}
+.summary__content div h2 {
+  font-size: 0.8rem;
+  color: rgba(11, 61, 46, 0.5137254902);
+}
+.summary__content div p {
+  color: #0b3d2e;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=style.css.map */
