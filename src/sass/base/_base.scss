@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Google Sans", serif;
+    padding: 3rem 1rem;
+    color: #06221a;
+}
+
+@supports (-webkit-touch-callout: none) {
+
+    input,
+    textarea,
+    select {
+        font-size: inherit;
+    }
+}
+
+button {
+    width: 100%;
+    font-family: inherit;
+    border: none;
+    font-weight: 500;
+    padding: .6rem .8rem;
+    border-radius: .55rem;
+    cursor: pointer;
+
+    font-size: .9rem;
+    transition: all .2s ease-in;
+
+    &:hover {
+        filter: brightness(88%);
+    }
+}
+
+input {
+    width: 100%;
+    font-family: inherit;
+    color: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    outline: none;
+    border: .1rem solid #D0D0D0;
+    padding: .6rem .8rem;
+    border-radius: .55rem;
+
+    &::placeholder {
+        font-weight: 500;
+    }
+
+    &:focus {
+        outline: 2px solid #06221a;
+    }
+}
+
+input[type="number"] {
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    -moz-appearance: textfield;
+}

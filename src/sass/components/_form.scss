@@ -1,0 +1,105 @@
+.form {
+    margin-top: 4rem;
+
+    &__container {
+        display: grid;
+        gap: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        width: 100%;
+
+        &>div:first-child {
+            display: grid;
+            grid-template-columns: 7fr 3fr;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        & label {
+            display: grid;
+            gap: .8rem;
+
+            & p {
+                font-weight: 500;
+                font-size: .92rem;
+            }
+        }
+    }
+
+    &__karats {
+        display: grid;
+        gap: .8rem;
+
+        & p {
+            font-weight: 500;
+            font-size: .92rem;
+        }
+
+        & div {
+            width: 100%;
+            gap: 1rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        & span {
+            text-align: center;
+            padding: .6rem;
+            border: .1rem solid #D0D0D0;
+            border-radius: .55rem;
+            user-select: none;
+            cursor: pointer;
+        }
+    }
+
+    &__amountPaid {
+        display: grid;
+        gap: 1.2rem;
+        width: 70%;
+        margin: 2.3rem auto 0;
+
+        & label {
+            display: grid;
+            gap: .8rem;
+
+            & p {
+                font-weight: 500;
+                font-size: .92rem;
+                text-align: center;
+            }
+        }
+
+        & button {
+            background-color: #D4AF37;
+            color: #0B3D2E;
+        }
+    }
+}
+
+.not-null {
+    color: red;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.goldPrice {
+    margin-top: 2.3rem;
+    color: #77621E;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+
+    border-bottom: .1rem dotted #06221a41;
+    padding-bottom: 2.3rem;
+
+    & span {
+        font-weight: bold;
+    }
+
+    & svg {
+        width: 1rem;
+        height: auto;
+    }
+}
