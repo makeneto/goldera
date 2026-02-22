@@ -138,7 +138,9 @@ export default function Form() {
                 </div>
             </div>
 
-            {isFormFilled() && (
+            {!isFormFilled() ? <img src="/gold-bar.jpg" className="gold-bars" alt="Gold Bars" />
+            
+            : (
                 <>
                     <p className="goldPrice">
                         <CircleDollarSign /> Este ouro custa{" "}
