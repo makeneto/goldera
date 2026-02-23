@@ -9,7 +9,7 @@ interface OperationResults {
     roi: number
     margemLucro: number
     marcos: number
-    makene: number
+    reinvestment: number
 }
 
 export default function Form() {
@@ -42,8 +42,8 @@ export default function Form() {
         const profit = goldCost - amountPaid
         const roi = (profit / amountPaid) * 100
         const marginPercentage = (profit / goldCost) * 100
-        const marcosShare = profit * 0.4
-        const makeneShare = profit * 0.6
+        const marcosShare = profit * 0.3
+        const reinvestmentShare = profit * 0.7
 
         setOperationResults({
             capitalInvest: amountPaid,
@@ -52,7 +52,7 @@ export default function Form() {
             roi: roi,
             margemLucro: marginPercentage,
             marcos: marcosShare,
-            makene: makeneShare,
+            reinvestment: reinvestmentShare,
         })
     }
 
