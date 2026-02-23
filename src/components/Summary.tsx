@@ -6,7 +6,7 @@ interface SummaryProps {
         roi: number
         margemLucro: number
         marcos: number
-        makene: number
+        reinvestment: number
     }
 }
 
@@ -52,12 +52,12 @@ export default function Summary({ results }: SummaryProps) {
 
                 <article>
                     <div>
-                        <h2>Marcos (40%)</h2>
+                        <h2>Marcos (30%)</h2>
                         <p>{formatCurrency(results.marcos)}</p>
                     </div>
                     <div>
-                        <h2>Makene (60%)</h2>
-                        <p>{formatCurrency(results.makene)}</p>
+                        <h2>Reinvestimento (70%)</h2>
+                        <p>{formatCurrency(results.reinvestment)}</p>
                     </div>
                 </article>
             </div>
