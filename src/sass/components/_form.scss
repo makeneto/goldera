@@ -1,6 +1,4 @@
 .form {
-    margin-top: 4rem;
-
     &__container {
         display: grid;
         gap: 2rem;
@@ -84,14 +82,54 @@
     padding: 0 !important;
 }
 
-.goldPrice {
+.field {
+    border-radius: .55rem;
+    border: .1rem solid #D0D0D0;
+    
+    &::placeholder {
+        font-weight: 500;
+    }
+    
+    &:focus {
+        outline: 2px solid #06221a;
+    }
+
+    &--amountPaid {
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+
+        & span {
+            background-color: rgb(15, 85, 64);
+            font-size: small;
+            font-weight: 500;
+            color: white;
+            height: 100%;
+            display: grid;
+            align-items: center;
+            padding-inline: .8rem;
+        }
+    }
+}
+
+input {
+    width: 100%;
+    border-radius: .55rem;
+    font-family: inherit;
+    color: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    outline: none;
+    border: none;
+    padding: .6rem .8rem;
+}
+
+.information {
     margin-top: 2.3rem;
-    color: #77621E;
     display: flex;
     align-items: center;
     gap: .5rem;
-
-    border-bottom: .1rem dotted #06221a41;
     padding-bottom: 2.3rem;
 
     & span {
@@ -101,6 +139,16 @@
     & svg {
         width: 1rem;
         height: auto;
+    }
+
+    &--price {
+        color: #77621E;
+        border-bottom: .1rem dotted #06221a41;
+    }
+
+    &--warning {
+        justify-content: center;
+        color: red;
     }
 }
 

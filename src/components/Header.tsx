@@ -1,9 +1,13 @@
-export default function Header() {
+interface HeaderProps {
+    normalText?: string
+    highlightedText?: string
+}
+
+export default function Header({ normalText, highlightedText }: HeaderProps) {
     return (
         <header className="header">
-            <img src="/logo.png" alt="Goldera Logo" />
             <h1>
-                Precisão na avaliação. <br /> <span>Clareza no lucro.</span>
+                {normalText} <br /> <span>{highlightedText}</span>
             </h1>
         </header>
     )
