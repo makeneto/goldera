@@ -28,10 +28,10 @@ export default function Form() {
     }, [operationResults])
 
     const karatValues: Record<number, number> = {
-        9: 59450,
-        14: 87825,
-        18: 112918,
-        24: 150550,
+        9: 57290,
+        14: 89120,
+        18: 114583,
+        24: 152770,
     }
 
     const calculateGoldValueNumber = (): number => {
