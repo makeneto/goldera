@@ -1,5 +1,5 @@
-import { CircleDollarSign } from "lucide-react"
-import { useState } from "react"
+import { CircleDollarSign, TriangleAlert } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
 import Summary from "./Summary"
 
 interface OperationResults {
@@ -16,8 +16,16 @@ export default function Form() {
     const [grams, setGrams] = useState<number>(0)
     const [karats, setKarats] = useState<number>(0)
     const [amountPaid, setAmountPaid] = useState<number>(0)
+    const [amountPaidFormatted, setAmountPaidFormatted] = useState<string>("")
     const [operationResults, setOperationResults] =
         useState<OperationResults | null>(null)
+    const summaryRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        if (operationResults && summaryRef.current) {
+            summaryRef.current.scrollIntoView({ behavior: "smooth" })
+        }
+    }, [operationResults])
 
     const karatValues: Record<number, number> = {
         9: 59450,
@@ -26,11 +34,41 @@ export default function Form() {
         24: 150550,
     }
 
-    const calculateGoldValue = (): string => {
-        return (grams * karatValues[karats]).toLocaleString("pt-BR", {
+    const calculateGoldValueNumber = (): number => {
+        const unit = karatValues[karats] ?? 0
+        return grams * unit
+    }
+
+    const formatCurrency = (value: number): string => {
+        return value.toLocaleString("pt-BR", {
             style: "currency",
             currency: "AOA",
         })
+    }
+
+    const formatAmountInput = (value: string): string => {
+        const numericValue = value.replace(/\D/g, "")
+        if (!numericValue) return ""
+
+        // Converter para número decimal (últimos 2 dígitos são centavos)
+        const decimalNumber = Number(numericValue) / 100
+
+        // Formatar com 2 casas decimais no padrão pt-BR
+        return decimalNumber.toLocaleString("pt-BR", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+        })
+    }
+
+    const handleAmountPaidChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const rawValue = e.target.value
+        const numericOnly = rawValue.replace(/\D/g, "")
+        const numericValue = numericOnly ? Number(numericOnly) / 100 : 0
+        const formattedValue = formatAmountInput(rawValue)
+
+        setAmountPaid(Math.max(0, numericValue))
+        setAmountPaidFormatted(formattedValue)
+        setOperationResults(null)
     }
 
     const isFormFilled = (): boolean => {
@@ -38,7 +76,7 @@ export default function Form() {
     }
 
     const handleCalculate = (): void => {
-        const goldCost = grams * karatValues[karats]
+        const goldCost = calculateGoldValueNumber()
         const profit = goldCost - amountPaid
         const roi = (profit / amountPaid) * 100
         const marginPercentage = (profit / goldCost) * 100
@@ -67,6 +105,8 @@ export default function Form() {
                             placeholder="Maria Augusto"
                             name="iname"
                             id="name"
+                            className="field"
+                            autoComplete="off"
                         />
                     </label>
                     <label htmlFor="grams">
@@ -78,6 +118,7 @@ export default function Form() {
                             placeholder="0.00"
                             name="igrams"
                             id="grams"
+                            className="field"
                             onChange={(e) =>
                                 setGrams(Math.max(0, Number(e.target.value)))
                             }
@@ -87,7 +128,7 @@ export default function Form() {
 
                 <div className="form__karats">
                     <p>
-                        Kilates (k) <span className="not-null">*</span>
+                        Quilates (k) <span className="not-null">*</span>
                     </p>
                     <div>
                         <span
@@ -146,35 +187,61 @@ export default function Form() {
                 />
             ) : (
                 <>
-                    <p className="goldPrice">
+                    <p className="information information--price">
                         <CircleDollarSign /> Este ouro custa{" "}
-                        <span>{calculateGoldValue()}</span>
+                        <span>
+                            {formatCurrency(calculateGoldValueNumber())}
+                        </span>
                     </p>
 
                     <div className="form__amountPaid">
                         <div>
                             <label htmlFor="amountPaid">
                                 <p>Valor pago ao cliente</p>
-                                <input
-                                    type="number"
-                                    placeholder="0.00"
-                                    name="amountPaid"
-                                    id="amountPaid"
-                                    onChange={(e) =>
-                                        setAmountPaid(
-                                            Math.max(0, Number(e.target.value)),
-                                        )
-                                    }
-                                />
+                                <div className="field field--amountPaid">
+                                    <input
+                                        type="text"
+                                        placeholder="0,00"
+                                        name="amountPaid"
+                                        id="amountPaid"
+                                        value={amountPaidFormatted}
+                                        onChange={handleAmountPaidChange}
+                                        autoComplete="off"
+                                    />
+                                    <span>AOA</span>
+                                </div>
                             </label>
                         </div>
 
-                        <button type="button" onClick={handleCalculate}>
+                        <button
+                            type="button"
+                            disabled={!amountPaid}
+                            style={{ opacity: amountPaid ? 1 : 0.6 }}
+                            onClick={handleCalculate}
+                        >
                             Calcular
                         </button>
                     </div>
 
-                    {operationResults && <Summary results={operationResults} />}
+                    {operationResults &&
+                        amountPaid > calculateGoldValueNumber() && (
+                            <p className="information information--warning">
+                                <TriangleAlert />
+                                Foi pago{" "}
+                                <span>
+                                    {formatCurrency(
+                                        amountPaid - calculateGoldValueNumber(),
+                                    )}
+                                </span>{" "}
+                                a mais.
+                            </p>
+                        )}
+
+                    {operationResults && operationResults.lucroGrande > 0 && (
+                        <div ref={summaryRef}>
+                            <Summary results={operationResults} />
+                        </div>
+                    )}
                 </>
             )}
         </div>

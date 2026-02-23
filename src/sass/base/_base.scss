@@ -12,15 +12,6 @@ body {
     color: #06221a;
 }
 
-@supports (-webkit-touch-callout: none) {
-
-    input,
-    textarea,
-    select {
-        font-size: inherit;
-    }
-}
-
 button {
     width: 100%;
     font-family: inherit;
@@ -38,24 +29,12 @@ button {
     }
 }
 
-input {
-    width: 100%;
-    font-family: inherit;
-    color: inherit;
-    font-size: 1rem;
-    font-weight: 600;
-    text-transform: capitalize;
-    outline: none;
-    border: .1rem solid #D0D0D0;
-    padding: .6rem .8rem;
-    border-radius: .55rem;
+@supports (-webkit-touch-callout: none) {
 
-    &::placeholder {
-        font-weight: 500;
-    }
-
-    &:focus {
-        outline: 2px solid #06221a;
+    input,
+    textarea,
+    select {
+        font-size: inherit;
     }
 }
 

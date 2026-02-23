@@ -11,13 +11,6 @@ body {
   color: #06221a;
 }
 
-@supports (-webkit-touch-callout: none) {
-  input,
-  textarea,
-  select {
-    font-size: inherit;
-  }
-}
 button {
   width: 100%;
   font-family: inherit;
@@ -33,25 +26,13 @@ button:hover {
   filter: brightness(88%);
 }
 
-input {
-  width: 100%;
-  font-family: inherit;
-  color: inherit;
-  font-size: 1rem;
-  font-weight: 600;
-  text-transform: capitalize;
-  outline: none;
-  border: 0.1rem solid #D0D0D0;
-  padding: 0.6rem 0.8rem;
-  border-radius: 0.55rem;
+@supports (-webkit-touch-callout: none) {
+  input,
+  textarea,
+  select {
+    font-size: inherit;
+  }
 }
-input::placeholder {
-  font-weight: 500;
-}
-input:focus {
-  outline: 2px solid #06221a;
-}
-
 input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
@@ -64,11 +45,9 @@ input[type=number] {
   margin-top: 1.5rem;
   text-align: center;
   font-size: 0.8rem;
+  user-select: none;
 }
 
-.form {
-  margin-top: 4rem;
-}
 .form__container {
   display: grid;
   gap: 2rem;
@@ -140,21 +119,66 @@ input[type=number] {
   padding: 0 !important;
 }
 
-.goldPrice {
+.field {
+  border-radius: 0.55rem;
+  border: 0.1rem solid #D0D0D0;
+}
+.field::placeholder {
+  font-weight: 500;
+}
+.field:focus {
+  outline: 2px solid #06221a;
+}
+.field--amountPaid {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.field--amountPaid span {
+  background-color: rgb(15, 85, 64);
+  font-size: small;
+  font-weight: 500;
+  color: white;
+  height: 100%;
+  display: grid;
+  align-items: center;
+  padding-inline: 0.8rem;
+}
+
+input {
+  width: 100%;
+  border-radius: 0.55rem;
+  font-family: inherit;
+  color: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  outline: none;
+  border: none;
+  padding: 0.6rem 0.8rem;
+}
+
+.information {
   margin-top: 2.3rem;
-  color: #77621E;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  border-bottom: 0.1rem dotted rgba(6, 34, 26, 0.2549019608);
   padding-bottom: 2.3rem;
 }
-.goldPrice span {
+.information span {
   font-weight: bold;
 }
-.goldPrice svg {
+.information svg {
   width: 1rem;
   height: auto;
+}
+.information--price {
+  color: #77621E;
+  border-bottom: 0.1rem dotted rgba(6, 34, 26, 0.2549019608);
+}
+.information--warning {
+  justify-content: center;
+  color: red;
 }
 
 .gold-bars {
@@ -165,8 +189,7 @@ input[type=number] {
 }
 
 .header {
-  display: grid;
-  gap: 2.3rem;
+  margin-bottom: 4rem;
 }
 .header h1 {
   font-size: 1.4rem;
@@ -175,6 +198,77 @@ input[type=number] {
 .header h1 span {
   font-family: "Playfair Display", serif !important;
   font-style: italic;
+}
+
+.gold-table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.gold-table {
+  width: 100%;
+  min-width: 53rem;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+.gold-table thead {
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+}
+.gold-table thead th {
+  padding: 1.2rem 2.7rem 1.2rem 0;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: top;
+}
+.gold-table thead th.color-box {
+  width: 80px;
+}
+.gold-table tbody tr:not(:last-child) {
+  border-bottom: 1px solid #ddd;
+}
+.gold-table tbody tr td {
+  padding: 1.2rem 2.7rem 1.2rem 0;
+  line-height: 1.6rem;
+  vertical-align: top;
+}
+
+.color-box {
+  width: 100%;
+  height: 50px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.loader-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.loader-container img {
+  width: 4rem;
+  height: auto;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.3rem;
+}
+nav a img {
+  height: 2.1rem;
+}
+nav a svg {
+  color: #06221a;
+  width: 1.6rem;
+  height: 1.6rem;
+  transition: all 0.2s ease-in;
+  user-select: none;
+}
+nav a svg:hover {
+  color: #115b46;
 }
 
 .summary {

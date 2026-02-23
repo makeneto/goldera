@@ -1,13 +1,19 @@
-import Footer from "./components/Footer"
-import Form from "./components/Form"
-import Header from "./components/Header"
+import { lazy, Suspense } from "react"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import LoadingPage from "./components/LoadingPage"
+
+const Home = lazy(() => import("./pages/Home"))
+const Karats = lazy(() => import("./pages/Karats"))
 
 export default function App() {
     return (
-        <main className="">
-            <Header />
-            <Form />
-            <Footer />
-        </main>
+        <BrowserRouter>
+            <Suspense fallback={<LoadingPage />}>
+                <Routes>
+                    <Route index element={<Home />} />
+                    <Route path="/karats" element={<Karats />} />
+                </Routes>
+            </Suspense>
+        </BrowserRouter>
     )
 }

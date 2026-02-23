@@ -1,0 +1,25 @@
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.3rem;
+
+    & a {
+        & img {
+            height: 2.1rem;
+        }
+
+        & svg {
+            color: #06221a;
+            width: 1.6rem;
+            height: 1.6rem;
+            transition: all .2s ease-in;
+            user-select: none;
+
+            
+            &:hover {
+                color: #115b46;
+            } 
+        }
+    }
+}
