@@ -10,6 +10,27 @@ body {
   padding: 3rem 1rem;
   color: #06221a;
 }
+@media (width > 640px) and (width <= 768px) {
+  body {
+    padding: 6rem 1rem;
+    width: 70%;
+    margin: auto;
+  }
+}
+@media (width > 768px) and (width <= 1280px) {
+  body {
+    padding: 6rem 1rem;
+    width: 36%;
+    margin: auto;
+  }
+}
+@media (width > 1280px) {
+  body {
+    padding: 6rem 1rem;
+    width: 30%;
+    margin: auto;
+  }
+}
 
 button {
   width: 100%;
@@ -143,6 +164,7 @@ input[type=number] {
   display: grid;
   align-items: center;
   padding-inline: 0.8rem;
+  opacity: 0.6;
 }
 
 input {
@@ -184,8 +206,23 @@ input {
 .gold-bars {
   margin-block: 5rem 5rem;
   display: flex;
-  width: 50%;
+  width: 40%;
   margin-inline: auto;
+}
+@media (width > 640px) and (width <= 768px) {
+  .gold-bars {
+    width: 25%;
+  }
+}
+@media (width > 768px) and (width <= 1280px) {
+  .gold-bars {
+    width: 30%;
+  }
+}
+@media (width > 1280px) {
+  .gold-bars {
+    width: 30%;
+  }
 }
 
 .header {
