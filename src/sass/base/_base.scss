@@ -10,6 +10,24 @@ body {
     font-family: "Google Sans", serif;
     padding: 3rem 1rem;
     color: #06221a;
+
+    @media (width > 640px) and (width <=768px) {
+        padding: 6rem 1rem;
+        width: 70%;
+        margin: auto;
+    }
+
+    @media (width > 768px) and (width <=1280px) {
+        padding: 6rem 1rem;
+        width: 36%;
+        margin: auto;
+    }
+
+    @media (width > 1280px) {
+        padding: 6rem 1rem;
+        width: 30%;
+        margin: auto;
+    }
 }
 
 button {

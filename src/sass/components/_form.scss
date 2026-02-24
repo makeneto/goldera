@@ -85,11 +85,11 @@
 .field {
     border-radius: .55rem;
     border: .1rem solid #D0D0D0;
-    
+
     &::placeholder {
         font-weight: 500;
     }
-    
+
     &:focus {
         outline: 2px solid #06221a;
     }
@@ -108,6 +108,7 @@
             display: grid;
             align-items: center;
             padding-inline: .8rem;
+            opacity: .6;
         }
     }
 }
@@ -155,6 +156,18 @@ input {
 .gold-bars {
     margin-block: 5rem 5rem;
     display: flex;
-    width: 50%;
+    width: 40%;
     margin-inline: auto;
+
+    @media (width > 640px) and (width <=768px) {
+        width: 25%;
+    }
+
+    @media (width > 768px) and (width <=1280px) {
+        width: 30%;
+    }
+
+    @media (width > 1280px) {
+        width: 30%;
+    }
 }
