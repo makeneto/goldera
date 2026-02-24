@@ -2,10 +2,10 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import type { OperationResults } from "../types/OperationResults.ts"
 
 const karatValues: Record<number, number> = {
-    9: 57290,
-    14: 89120,
-    18: 114583,
-    24: 152770,
+    9: 57000,
+    14: 88700,
+    18: 114000,
+    24: 152000,
 }
 
 export function useGoldForm() {
