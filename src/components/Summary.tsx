@@ -1,27 +1,8 @@
-interface SummaryProps {
-    results: {
-        capitalInvest: number
-        goldCost: number
-        lucroGrande: number
-        roi: number
-        margemLucro: number
-        marcos: number
-        reinvestment: number
-    }
-}
+import type { SummaryProps } from "../types/SummaryProps"
+import { formatCurrency } from "../utils/formatCurrency"
+import { formatPercentage } from "../utils/formatPercentage"
 
 export default function Summary({ results }: SummaryProps) {
-    const formatCurrency = (value: number): string => {
-        return value.toLocaleString("pt-BR", {
-            style: "currency",
-            currency: "AOA",
-        })
-    }
-
-    const formatPercentage = (value: number): string => {
-        return value.toFixed(2) + "%"
-    }
-
     return (
         <section className="summary">
             <h1>Resumo da Operação</h1>
