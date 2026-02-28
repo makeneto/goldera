@@ -4,6 +4,8 @@ export interface OperationResults {
     lucroGrande: number
     roi: number
     margemLucro: number
-    marcos: number
+    personalUse: number
+    reserve: number
     reinvestment: number
+    operationalPatrimony: number
 }

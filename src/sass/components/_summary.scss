@@ -19,7 +19,7 @@
             gap: 1.5rem;
         }
 
-        & article:last-child {
+        & article:not(:first-child) {
             padding-top: 2.5rem;
             border-top: 1px dotted #0b3d2e42;
         }
