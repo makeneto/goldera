@@ -17,6 +17,9 @@ export default function Summary({ results }: SummaryProps) {
                         <h2>Receita</h2>
                         <p>{formatCurrency(results.goldCost)}</p>
                     </div>
+                </article>
+
+                <article>
                     <div>
                         <h2>Lucro Bruto</h2>
                         <p>{formatCurrency(results.lucroGrande)}</p>
@@ -26,19 +29,30 @@ export default function Summary({ results }: SummaryProps) {
                         <p>{formatPercentage(results.roi)}</p>
                     </div>
                     <div>
-                        <h2>Margem de Lucro</h2>
+                        <h2>Margem de lucro</h2>
                         <p>{formatPercentage(results.margemLucro)}</p>
                     </div>
                 </article>
 
                 <article>
                     <div>
-                        <h2>Marcos (30%)</h2>
-                        <p>{formatCurrency(results.marcos)}</p>
+                        <h2>Uso pessoal (30%)</h2>
+                        <p>{formatCurrency(results.personalUse)}</p>
                     </div>
                     <div>
-                        <h2>Reinvestimento (70%)</h2>
+                        <h2>Reserva estratégica (10%)</h2>
+                        <p>{formatCurrency(results.reserve)}</p>
+                    </div>
+                    <div>
+                        <h2>Reinvestimento (60%)</h2>
                         <p>{formatCurrency(results.reinvestment)}</p>
+                    </div>
+                </article>
+
+                <article>
+                    <div>
+                        <h2>Patrimônio operacional</h2>
+                        <p>{formatCurrency(results.operationalPatrimony)}</p>
                     </div>
                 </article>
             </div>

@@ -325,7 +325,7 @@ nav a svg:hover {
   padding-inline: 2.5rem;
   gap: 1.5rem;
 }
-.summary__content article:last-child {
+.summary__content article:not(:first-child) {
   padding-top: 2.5rem;
   border-top: 1px dotted rgba(11, 61, 46, 0.2588235294);
 }
