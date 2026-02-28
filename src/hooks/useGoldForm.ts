@@ -1,21 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import type { OperationResults } from "../types/OperationResults"
 
-<<<<<<< HEAD
 import { formatAmountInput } from "../utils/formatAmountInput"
 import { parseAmountInput } from "../utils/parseAmountInput"
 import {
     calculateGoldCost,
     computeOperationResults,
 } from "../utils/calculateOperationResults"
-=======
-const karatValues: Record<number, number> = {
-    9: 58300,
-    14: 90700,
-    18: 116700,
-    24: 155600,
-}
->>>>>>> df1f636ec93b5f55a441fefd2765bc516f90447c
 
 export function useGoldForm() {
     const [grams, setGrams] = useState<number>(0)
