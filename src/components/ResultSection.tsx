@@ -1,4 +1,4 @@
-import { CircleDollarSign, TriangleAlert } from "lucide-react"
+import { CircleDollarSign } from "lucide-react"
 import Summary from "./Summary"
 import { formatCurrency } from "../utils/formatCurrency"
 import type { OperationResults } from "../types/OperationResults"
@@ -7,6 +7,8 @@ interface ResultSectionProps {
     goldCost: number
     amountPaid: number
     amountPaidFormatted: string
+    isIntermediary: boolean
+    setIsIntermediary: (value: boolean) => void
     onAmountChange: (e: React.ChangeEvent<HTMLInputElement>) => void
     onCalculate: () => void
     operationResults: OperationResults | null
@@ -17,6 +19,8 @@ export default function ResultSection({
     goldCost,
     amountPaid,
     amountPaidFormatted,
+    isIntermediary,
+    setIsIntermediary,
     onAmountChange,
     onCalculate,
     operationResults,
@@ -45,6 +49,35 @@ export default function ResultSection({
                             />
                             <span>AOA</span>
                         </div>
+
+                        <aside className="information--warning">
+                            {operationResults && amountPaid > goldCost && (
+                                <>
+                                    Excedente de
+                                    <span>
+                                        {formatCurrency(amountPaid - goldCost)}
+                                    </span>
+                                </>
+                            )}
+                        </aside>
+                    </label>
+                </div>
+
+                <div className="intermediary">
+                    <label htmlFor="isIntermediary">
+                        <p>Intermediário</p>
+                        <label className="switch">
+                            <input
+                                type="checkbox"
+                                name="intermediary"
+                                id="isIntermediary"
+                                checked={isIntermediary}
+                                onChange={(e) =>
+                                    setIsIntermediary(e.target.checked)
+                                }
+                            />
+                            <span className="slider"></span>
+                        </label>
                     </label>
                 </div>
 
@@ -58,17 +91,12 @@ export default function ResultSection({
                 </button>
             </div>
 
-            {operationResults && amountPaid > goldCost && (
-                <p className="information information--warning">
-                    <TriangleAlert />
-                    Foi pago{" "}
-                    <span>{formatCurrency(amountPaid - goldCost)}</span> a mais.
-                </p>
-            )}
-
             {operationResults && operationResults.lucroGrande > 0 && (
                 <div ref={summaryRef}>
-                    <Summary results={operationResults} />
+                    <Summary
+                        results={operationResults}
+                        isIntermediary={isIntermediary}
+                    />
                 </div>
             )}
         </>

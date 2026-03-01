@@ -1,0 +1,59 @@
+
+$button-width: 3.5em;
+$button-height: 2em;
+$toggle-diameter: 1.5em;
+$button-toggle-offset: calc(($button-height - $toggle-diameter) / 2);
+$toggle-shadow-offset: 10px;
+$toggle-wider: 3em;
+$color-grey: #cccccc;
+$color-green: #4296f4;
+$shadow-default: rgba(0, 0, 0, 0.1);
+$transition-speed: 0.3s;
+
+.switch {
+    margin: auto;
+    input[type="checkbox"] {
+        display: none;
+
+        & + .slider {
+        display: inline-block;
+        width: $button-width;
+        height: $button-height;
+        background-color: $color-grey;
+        border-radius: calc($button-height / 2);
+        position: relative;
+        transition: $transition-speed all ease-in-out;
+
+            &::after {
+                content: "";
+                display: inline-block;
+                width: $toggle-diameter;
+                height: $toggle-diameter;
+                background-color: #fff;
+                border-radius: calc($toggle-diameter / 2);
+                position: absolute;
+                top: $button-toggle-offset;
+                transform: translateX($button-toggle-offset);
+                box-shadow: $toggle-shadow-offset 0 calc($toggle-shadow-offset * 4) $shadow-default;
+                transition: $transition-speed all ease-in-out;
+            }
+        }
+
+        &:checked + .slider {
+            background-color: $color-green;
+
+            &::after {
+                transform: translateX(calc($button-width - $toggle-diameter - $button-toggle-offset));
+                box-shadow: calc($toggle-shadow-offset * -1) 0 calc($toggle-shadow-offset * 4) $shadow-default;
+            }
+        }
+
+        &:active + .slider::after {
+            width: $toggle-wider;
+        }
+
+        &:checked:active + .slider::after {
+            transform: translateX(calc($button-width - $toggle-wider - $button-toggle-offset));
+        }
+    }
+}

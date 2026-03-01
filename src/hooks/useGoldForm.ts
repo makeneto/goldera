@@ -13,6 +13,7 @@ export function useGoldForm() {
     const [karats, setKarats] = useState<number>(0)
     const [amountPaid, setAmountPaid] = useState<number>(0)
     const [amountPaidFormatted, setAmountPaidFormatted] = useState<string>("")
+    const [isIntermediary, setIsIntermediary] = useState<boolean>(false)
     const [operationResults, setOperationResults] =
         useState<OperationResults | null>(null)
     const summaryRef = useRef<HTMLDivElement>(null)
@@ -49,6 +50,8 @@ export function useGoldForm() {
         setKarats,
         amountPaid,
         amountPaidFormatted,
+        isIntermediary,
+        setIsIntermediary,
         operationResults,
         summaryRef,
         goldCost,

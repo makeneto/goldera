@@ -10,6 +10,8 @@ export default function Form() {
         setKarats,
         amountPaid,
         amountPaidFormatted,
+        isIntermediary,
+        setIsIntermediary,
         operationResults,
         summaryRef,
         goldCost,
@@ -36,6 +38,8 @@ export default function Form() {
                     goldCost={goldCost}
                     amountPaid={amountPaid}
                     amountPaidFormatted={amountPaidFormatted}
+                    isIntermediary={isIntermediary}
+                    setIsIntermediary={setIsIntermediary}
                     onAmountChange={handleAmountPaidChange}
                     onCalculate={handleCalculate}
                     operationResults={operationResults}
