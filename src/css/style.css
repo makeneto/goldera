@@ -7,7 +7,7 @@
 
 body {
   font-family: "Google Sans", serif;
-  padding: 3rem 1rem;
+  padding: 3rem 1rem 0;
   color: #06221a;
 }
 @media (width > 640px) and (width <= 768px) {
@@ -63,7 +63,7 @@ input[type=number] {
 }
 
 .footer {
-  margin-top: 1.5rem;
+  margin-block: 2rem;
   text-align: center;
   font-size: 0.8rem;
   user-select: none;
@@ -115,10 +115,8 @@ input[type=number] {
   cursor: pointer;
 }
 .form__amountPaid {
-  display: grid;
-  gap: 1.2rem;
   width: 70%;
-  margin: 2.3rem auto 0;
+  margin: 3.3rem auto 0;
 }
 .form__amountPaid label {
   display: grid;
@@ -128,6 +126,9 @@ input[type=number] {
   font-weight: 500;
   font-size: 0.92rem;
   text-align: center;
+}
+.form__amountPaid .intermediary {
+  margin-block: 0.8rem 2.1rem;
 }
 .form__amountPaid button {
   background-color: #D4AF37;
@@ -181,11 +182,11 @@ input {
 }
 
 .information {
-  margin-top: 2.3rem;
+  margin-top: 3.3rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding-bottom: 2.3rem;
+  padding-bottom: 3.3rem;
 }
 .information span {
   font-weight: bold;
@@ -199,8 +200,17 @@ input {
   border-bottom: 0.1rem dotted rgba(6, 34, 26, 0.2549019608);
 }
 .information--warning {
+  color: rgb(164, 0, 0);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
   justify-content: center;
+  gap: 0.29rem;
+  margin-bottom: 0.8rem;
+}
+.information--warning span {
   color: red;
+  font-weight: bold;
 }
 
 .gold-bars {
@@ -235,6 +245,48 @@ input {
 .header h1 span {
   font-family: "Playfair Display", serif !important;
   font-style: italic;
+}
+
+.switch {
+  margin: auto;
+}
+.switch input[type=checkbox] {
+  display: none;
+}
+.switch input[type=checkbox] + .slider {
+  display: inline-block;
+  width: 3.5em;
+  height: 2em;
+  background-color: #cccccc;
+  border-radius: 1em;
+  position: relative;
+  transition: 0.3s all ease-in-out;
+}
+.switch input[type=checkbox] + .slider::after {
+  content: "";
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  background-color: #fff;
+  border-radius: 0.75em;
+  position: absolute;
+  top: 0.25em;
+  transform: translateX(0.25em);
+  box-shadow: 10px 0 40px rgba(0, 0, 0, 0.1);
+  transition: 0.3s all ease-in-out;
+}
+.switch input[type=checkbox]:checked + .slider {
+  background-color: #4296f4;
+}
+.switch input[type=checkbox]:checked + .slider::after {
+  transform: translateX(1.75em);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
+}
+.switch input[type=checkbox]:active + .slider::after {
+  width: 3em;
+}
+.switch input[type=checkbox]:checked:active + .slider::after {
+  transform: translateX(0.25em);
 }
 
 .gold-table-container {
@@ -309,7 +361,7 @@ nav a svg:hover {
 }
 
 .summary {
-  margin-top: 4rem;
+  margin-top: 4.5rem;
   border-radius: 1.5rem;
   padding-block: 2rem 3rem;
   width: 100%;

@@ -53,10 +53,8 @@
     }
 
     &__amountPaid {
-        display: grid;
-        gap: 1.2rem;
         width: 70%;
-        margin: 2.3rem auto 0;
+        margin: 3.3rem auto 0;
 
         & label {
             display: grid;
@@ -67,6 +65,10 @@
                 font-size: .92rem;
                 text-align: center;
             }
+        }
+
+        .intermediary {
+            margin-block: .8rem 2.1rem;
         }
 
         & button {
@@ -127,11 +129,11 @@ input {
 }
 
 .information {
-    margin-top: 2.3rem;
+    margin-top: 3.3rem;
     display: flex;
     align-items: center;
     gap: .5rem;
-    padding-bottom: 2.3rem;
+    padding-bottom: 3.3rem;
 
     & span {
         font-weight: bold;
@@ -148,8 +150,19 @@ input {
     }
 
     &--warning {
+        color: rgb(164, 0, 0);
+        font-size: .9rem;
+        display: flex;
+        align-items: center;
         justify-content: center;
-        color: red;
+        gap: .29rem;
+        // opacity: 0;
+        margin-bottom: .8rem;
+
+        & span {
+            color: red;
+            font-weight: bold;
+        }
     }
 }
 
