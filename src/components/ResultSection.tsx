@@ -1,4 +1,4 @@
-import { CircleDollarSign } from "lucide-react"
+import { CircleDollarSign, Plus } from "lucide-react"
 import Summary from "./Summary"
 import { formatCurrency } from "../utils/formatCurrency"
 import type { OperationResults } from "../types/OperationResults"
@@ -22,6 +22,13 @@ interface ResultSectionProps {
     index: number,
     e: React.ChangeEvent<HTMLInputElement>,
   ) => void
+  onAddInvestor: () => void
+  onInject: () => void
+  productName: string
+  grams: number
+  karats: number
+  investorShares: Array<{ name: string; percentage: number; amount: number }>
+  isInjectSummary: boolean
   onAmountChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   onCalculate: () => void
   operationResults: OperationResults | null
@@ -41,6 +48,13 @@ export default function ResultSection({
   investorsTotal,
   onInvestorNameChange,
   onInvestorAmountChange,
+  onAddInvestor,
+  onInject,
+  productName,
+  grams,
+  karats,
+  investorShares,
+  isInjectSummary,
   onAmountChange,
   onCalculate,
   operationResults,
@@ -71,56 +85,57 @@ export default function ResultSection({
 
       {isInvestor ? (
         <section className="investors">
-          <p className="investors__title">Investidores</p>
-          <p className="investors__subtitle">2 Investidores</p>
-
-          <div className="form__container">
+          <div className="investors__header">
             <div>
-              <label>
-                <p>Investidor</p>
+              <p className="investors__title">Investidores</p>
+              <p className="investors__subtitle">
+                {investorNames.length} Investidores
+              </p>
+            </div>
+
+            <button type="button" onClick={onAddInvestor}>
+              <Plus />
+            </button>
+          </div>
+
+          <div className="form__container investors__data investors__data--header">
+            <p>Investidor</p>
+            <p>Valor Invest.</p>
+          </div>
+
+          {investorNames.map((name, index) => (
+            <div className="form__container" key={index}>
+              <div className="investors__data">
                 <input
                   type="text"
-                  placeholder="Makene"
+                  placeholder="Nome"
                   className="field"
-                  value={investorNames[0]}
-                  onChange={(e) => onInvestorNameChange(0, e)}
+                  value={name}
+                  onChange={(e) => onInvestorNameChange(index, e)}
                   autoComplete="off"
+                  aria-label="Nome do investidor"
                 />
-              </label>
-              <label>
-                <p>Valor Invest.</p>
                 <input
                   type="text"
                   placeholder="40.000,00"
                   className="field"
-                  value={investorAmountsFormatted[0]}
-                  onChange={(e) => onInvestorAmountChange(0, e)}
+                  value={investorAmountsFormatted[index] ?? ""}
+                  onChange={(e) => onInvestorAmountChange(index, e)}
                   autoComplete="off"
+                  aria-label="Valor investido"
                 />
-              </label>
+              </div>
             </div>
-          </div>
+          ))}
 
-          <div className="form__container">
-            <div>
-              <input
-                type="text"
-                placeholder="José"
-                className="field"
-                value={investorNames[1]}
-                onChange={(e) => onInvestorNameChange(1, e)}
-                autoComplete="off"
-              />
-              <input
-                type="text"
-                placeholder="10.000,00"
-                className="field"
-                value={investorAmountsFormatted[1]}
-                onChange={(e) => onInvestorAmountChange(1, e)}
-                autoComplete="off"
-              />
-            </div>
-          </div>
+          <button
+            type="button"
+            className="investors__total-button"
+            onClick={onInject}
+            disabled={investorsTotal === 0}
+          >
+            Injetar <span>{formatCurrency(investorsTotal)}</span>
+          </button>
         </section>
       ) : (
         <div className="form__amountPaid">
@@ -180,7 +195,15 @@ export default function ResultSection({
 
       {operationResults && operationResults.lucroGrande > 0 && (
         <div ref={summaryRef}>
-          <Summary results={operationResults} isIntermediary={isIntermediary} />
+          <Summary
+            results={operationResults}
+            isIntermediary={isIntermediary}
+            isInjectSummary={isInjectSummary}
+            productName={productName}
+            grams={grams}
+            karats={karats}
+            investorShares={investorShares}
+          />
         </div>
       )}
     </>

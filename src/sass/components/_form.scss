@@ -6,7 +6,7 @@
         margin: 0 auto;
         width: 100%;
 
-        &>div:first-child {
+        & .productData {
             display: grid;
             grid-template-columns: 7fr 3fr;
             gap: 1rem;
