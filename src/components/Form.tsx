@@ -5,6 +5,7 @@ import { useGoldForm } from "../hooks/useGoldForm"
 
 export default function Form() {
   const {
+    grams,
     setGrams,
     karats,
     setKarats,
@@ -19,6 +20,12 @@ export default function Form() {
     investorsTotal,
     handleInvestorNameChange,
     handleInvestorAmountChange,
+    handleAddInvestor,
+    handleInject,
+    productName,
+    setProductName,
+    investorShares,
+    isInjectSummary,
     operationResults,
     summaryRef,
     goldCost,
@@ -30,7 +37,10 @@ export default function Form() {
   return (
     <div className="form">
       <div className="form__container">
-        <CustomerFields onGramsChange={setGrams} />
+        <CustomerFields
+          onProductNameChange={setProductName}
+          onGramsChange={setGrams}
+        />
         <KaratSelector selected={karats} onSelect={setKarats} />
       </div>
 
@@ -50,6 +60,13 @@ export default function Form() {
           investorsTotal={investorsTotal}
           onInvestorNameChange={handleInvestorNameChange}
           onInvestorAmountChange={handleInvestorAmountChange}
+          onAddInvestor={handleAddInvestor}
+          onInject={handleInject}
+          productName={productName}
+          grams={grams}
+          karats={karats}
+          investorShares={investorShares}
+          isInjectSummary={isInjectSummary}
           onAmountChange={handleAmountPaidChange}
           onCalculate={handleCalculate}
           operationResults={operationResults}

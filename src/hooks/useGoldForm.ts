@@ -15,6 +15,7 @@ export function useGoldForm() {
   const [amountPaidFormatted, setAmountPaidFormatted] = useState<string>("")
   const [isIntermediary, setIsIntermediary] = useState<boolean>(false)
   const [isInvestor, setIsInvestor] = useState<boolean>(false)
+  const [productName, setProductName] = useState<string>("")
   const [investorNames, setInvestorNames] = useState<string[]>(["", ""])
   const [investorAmounts, setInvestorAmounts] = useState<number[]>([0, 0])
   const [investorAmountsFormatted, setInvestorAmountsFormatted] = useState<
@@ -22,6 +23,10 @@ export function useGoldForm() {
   >(["", ""])
   const [operationResults, setOperationResults] =
     useState<OperationResults | null>(null)
+  const [isInjectSummary, setIsInjectSummary] = useState<boolean>(false)
+  const [investorShares, setInvestorShares] = useState<
+    Array<{ name: string; percentage: number; amount: number }>
+  >([])
   const summaryRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -35,12 +40,18 @@ export function useGoldForm() {
     [grams, karats],
   )
 
+  const resetSummary = (): void => {
+    setOperationResults(null)
+    setIsInjectSummary(false)
+    setInvestorShares([])
+  }
+
   const handleAmountPaidChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = e.target.value
     const parsed = parseAmountInput(rawValue)
     setAmountPaid(parsed)
     setAmountPaidFormatted(formatAmountInput(rawValue))
-    setOperationResults(null)
+    resetSummary()
   }
 
   const handleInvestorNameChange = (
@@ -50,6 +61,7 @@ export function useGoldForm() {
     const nextNames = [...investorNames]
     nextNames[index] = e.target.value
     setInvestorNames(nextNames)
+    resetSummary()
   }
 
   const handleInvestorAmountChange = (
@@ -67,7 +79,7 @@ export function useGoldForm() {
 
     setInvestorAmounts(nextAmounts)
     setInvestorAmountsFormatted(nextFormatted)
-    setOperationResults(null)
+    resetSummary()
   }
 
   const investorsTotal = useMemo(
@@ -78,7 +90,36 @@ export function useGoldForm() {
   const isFormFilled = grams > 0 && karats > 0
 
   const handleCalculate = (): void => {
+    setIsInjectSummary(false)
+    setInvestorShares([])
     setOperationResults(computeOperationResults(amountPaid, goldCost))
+  }
+
+  const handleAddInvestor = (): void => {
+    setInvestorNames((current) => [...current, ""])
+    setInvestorAmounts((current) => [...current, 0])
+    setInvestorAmountsFormatted((current) => [...current, ""])
+    resetSummary()
+  }
+
+  const handleInject = (): void => {
+    if (!investorsTotal) {
+      return
+    }
+
+    const results = computeOperationResults(investorsTotal, goldCost)
+    const shares = investorAmounts.map((amount, index) => {
+      const percentage = investorsTotal ? amount / investorsTotal : 0
+      return {
+        name: investorNames[index] || `Investidor ${index + 1}`,
+        percentage: percentage * 100,
+        amount: results.goldCost * percentage,
+      }
+    })
+
+    setOperationResults(results)
+    setInvestorShares(shares)
+    setIsInjectSummary(true)
   }
 
   return {
@@ -97,6 +138,12 @@ export function useGoldForm() {
     investorsTotal,
     handleInvestorNameChange,
     handleInvestorAmountChange,
+    handleAddInvestor,
+    handleInject,
+    productName,
+    setProductName,
+    investorShares,
+    isInjectSummary,
     operationResults,
     summaryRef,
     goldCost,

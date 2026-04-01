@@ -1,20 +1,27 @@
 interface CustomerFieldsProps {
+  onProductNameChange: (value: string) => void
   onGramsChange: (g: number) => void
 }
 
-export default function CustomerFields({ onGramsChange }: CustomerFieldsProps) {
+export default function CustomerFields({
+  onProductNameChange,
+  onGramsChange,
+}: CustomerFieldsProps) {
   return (
     <>
-      <div>
+      <div className="productData">
         <label htmlFor="productName">
-          <p>Produto</p>
+          <p>
+            Produto <span className="not-null">*</span>
+          </p>
           <input
             type="text"
             placeholder="Fio de ouro"
             name="productName"
             id="productName"
             className="field"
-            autoComplete="off"  
+            autoComplete="off"
+            onChange={(e) => onProductNameChange(e.target.value)}
           />
         </label>
         <label htmlFor="grams">
