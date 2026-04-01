@@ -21,9 +21,14 @@ export default function Summary({
             <div>
               <h2>Produto</h2>
               <p>{productName || "Brincos"}</p>
-              <p>
-                {grams ?? 0} g • {karats ?? 0} K
-              </p>
+            </div>
+            <div>
+              <h2>Peso</h2>
+              <p>{grams ?? 0} g</p>
+            </div>
+            <div>
+              <h2>Quilates</h2>
+              <p>{karats ?? 0} k</p>
             </div>
           </article>
 
