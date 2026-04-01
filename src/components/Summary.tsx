@@ -6,7 +6,7 @@ export default function Summary({
   results,
   isIntermediary,
   isInjectSummary = false,
-  productName = "Brincos",
+  productName = "Ouro",
   grams = 0,
   karats = 0,
   investorShares = [],
