@@ -1,0 +1,17 @@
+.investors {
+      margin-top: 2.5rem;
+      display: grid;
+      gap: 1rem;
+
+      &__title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: -0.5rem;
+      }
+
+      &__subtitle {
+            font-size: .92rem;
+            opacity: .8;
+            margin-bottom: 2rem;
+      }
+}

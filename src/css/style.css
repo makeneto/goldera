@@ -127,12 +127,26 @@ input[type=number] {
   font-size: 0.92rem;
   text-align: center;
 }
-.form__amountPaid .intermediary {
-  margin-block: 0.8rem 2.1rem;
-}
 .form__amountPaid button {
   background-color: #D4AF37;
   color: #0B3D2E;
+}
+
+.toggle-space {
+  display: flex;
+  justify-content: center;
+  margin: 0.8rem auto 2.1rem;
+  padding-bottom: 3rem;
+  border-bottom: 0.1rem dotted rgba(6, 34, 26, 0.2549019608);
+}
+.toggle-space label {
+  display: grid;
+  gap: 0.8rem;
+}
+.toggle-space label p {
+  font-weight: 500;
+  font-size: 0.92rem;
+  text-align: center;
 }
 
 .not-null {
@@ -175,7 +189,6 @@ input {
   color: inherit;
   font-size: 1rem;
   font-weight: 600;
-  text-transform: capitalize;
   outline: none;
   border: none;
   padding: 0.6rem 0.8rem;
@@ -186,7 +199,7 @@ input {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding-bottom: 3.3rem;
+  padding-bottom: 2.3rem;
 }
 .information span {
   font-weight: bold;
@@ -197,7 +210,6 @@ input {
 }
 .information--price {
   color: #77621E;
-  border-bottom: 0.1rem dotted rgba(6, 34, 26, 0.2549019608);
 }
 .information--warning {
   color: rgb(164, 0, 0);
@@ -245,6 +257,22 @@ input {
 .header h1 span {
   font-family: "Playfair Display", serif !important;
   font-style: italic;
+}
+
+.investors {
+  margin-top: 2.5rem;
+  display: grid;
+  gap: 1rem;
+}
+.investors__title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: -0.5rem;
+}
+.investors__subtitle {
+  font-size: 0.92rem;
+  opacity: 0.8;
+  margin-bottom: 2rem;
 }
 
 .switch {

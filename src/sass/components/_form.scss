@@ -67,13 +67,28 @@
             }
         }
 
-        .intermediary {
-            margin-block: .8rem 2.1rem;
-        }
-
         & button {
             background-color: #D4AF37;
             color: #0B3D2E;
+        }
+    }
+}
+
+.toggle-space {
+    display: flex;
+    justify-content: center;
+    margin: .8rem auto 2.1rem;
+    padding-bottom: 3rem;
+    border-bottom: .1rem dotted #06221a41;
+
+    & label {
+        display: grid;
+        gap: .8rem;
+
+        & p {
+            font-weight: 500;
+            font-size: .92rem;
+            text-align: center;
         }
     }
 }
@@ -122,7 +137,6 @@ input {
     color: inherit;
     font-size: 1rem;
     font-weight: 600;
-    text-transform: capitalize;
     outline: none;
     border: none;
     padding: .6rem .8rem;
@@ -133,7 +147,7 @@ input {
     display: flex;
     align-items: center;
     gap: .5rem;
-    padding-bottom: 3.3rem;
+    padding-bottom: 2.3rem;
 
     & span {
         font-weight: bold;
@@ -146,7 +160,6 @@ input {
 
     &--price {
         color: #77621E;
-        border-bottom: .1rem dotted #06221a41;
     }
 
     &--warning {
