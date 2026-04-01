@@ -4,59 +4,104 @@ import type { OperationResults } from "../types/OperationResults"
 import { formatAmountInput } from "../utils/formatAmountInput"
 import { parseAmountInput } from "../utils/parseAmountInput"
 import {
-    calculateGoldCost,
-    computeOperationResults,
+  calculateGoldCost,
+  computeOperationResults,
 } from "../utils/calculateOperationResults"
 
 export function useGoldForm() {
-    const [grams, setGrams] = useState<number>(0)
-    const [karats, setKarats] = useState<number>(0)
-    const [amountPaid, setAmountPaid] = useState<number>(0)
-    const [amountPaidFormatted, setAmountPaidFormatted] = useState<string>("")
-    const [isIntermediary, setIsIntermediary] = useState<boolean>(false)
-    const [operationResults, setOperationResults] =
-        useState<OperationResults | null>(null)
-    const summaryRef = useRef<HTMLDivElement>(null)
+  const [grams, setGrams] = useState<number>(0)
+  const [karats, setKarats] = useState<number>(0)
+  const [amountPaid, setAmountPaid] = useState<number>(0)
+  const [amountPaidFormatted, setAmountPaidFormatted] = useState<string>("")
+  const [isIntermediary, setIsIntermediary] = useState<boolean>(false)
+  const [isInvestor, setIsInvestor] = useState<boolean>(false)
+  const [investorNames, setInvestorNames] = useState<string[]>(["", ""])
+  const [investorAmounts, setInvestorAmounts] = useState<number[]>([0, 0])
+  const [investorAmountsFormatted, setInvestorAmountsFormatted] = useState<
+    string[]
+  >(["", ""])
+  const [operationResults, setOperationResults] =
+    useState<OperationResults | null>(null)
+  const summaryRef = useRef<HTMLDivElement>(null)
 
-    useEffect(() => {
-        if (operationResults && summaryRef.current) {
-            summaryRef.current.scrollIntoView({ behavior: "smooth" })
-        }
-    }, [operationResults])
-
-    const goldCost = useMemo(
-        () => calculateGoldCost(grams, karats),
-        [grams, karats],
-    )
-
-    const handleAmountPaidChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const rawValue = e.target.value
-        const parsed = parseAmountInput(rawValue)
-        setAmountPaid(parsed)
-        setAmountPaidFormatted(formatAmountInput(rawValue))
-        setOperationResults(null)
+  useEffect(() => {
+    if (operationResults && summaryRef.current) {
+      summaryRef.current.scrollIntoView({ behavior: "smooth" })
     }
+  }, [operationResults])
 
-    const isFormFilled = grams > 0 && karats > 0
+  const goldCost = useMemo(
+    () => calculateGoldCost(grams, karats),
+    [grams, karats],
+  )
 
-    const handleCalculate = (): void => {
-        setOperationResults(computeOperationResults(amountPaid, goldCost))
-    }
+  const handleAmountPaidChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const rawValue = e.target.value
+    const parsed = parseAmountInput(rawValue)
+    setAmountPaid(parsed)
+    setAmountPaidFormatted(formatAmountInput(rawValue))
+    setOperationResults(null)
+  }
 
-    return {
-        grams,
-        setGrams,
-        karats,
-        setKarats,
-        amountPaid,
-        amountPaidFormatted,
-        isIntermediary,
-        setIsIntermediary,
-        operationResults,
-        summaryRef,
-        goldCost,
-        handleAmountPaidChange,
-        isFormFilled,
-        handleCalculate,
-    }
+  const handleInvestorNameChange = (
+    index: number,
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const nextNames = [...investorNames]
+    nextNames[index] = e.target.value
+    setInvestorNames(nextNames)
+  }
+
+  const handleInvestorAmountChange = (
+    index: number,
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const rawValue = e.target.value
+    const parsed = parseAmountInput(rawValue)
+
+    const nextAmounts = [...investorAmounts]
+    const nextFormatted = [...investorAmountsFormatted]
+
+    nextAmounts[index] = parsed
+    nextFormatted[index] = formatAmountInput(rawValue)
+
+    setInvestorAmounts(nextAmounts)
+    setInvestorAmountsFormatted(nextFormatted)
+    setOperationResults(null)
+  }
+
+  const investorsTotal = useMemo(
+    () => investorAmounts.reduce((total, value) => total + value, 0),
+    [investorAmounts],
+  )
+
+  const isFormFilled = grams > 0 && karats > 0
+
+  const handleCalculate = (): void => {
+    setOperationResults(computeOperationResults(amountPaid, goldCost))
+  }
+
+  return {
+    grams,
+    setGrams,
+    karats,
+    setKarats,
+    amountPaid,
+    amountPaidFormatted,
+    isIntermediary,
+    setIsIntermediary,
+    isInvestor,
+    setIsInvestor,
+    investorNames,
+    investorAmountsFormatted,
+    investorsTotal,
+    handleInvestorNameChange,
+    handleInvestorAmountChange,
+    operationResults,
+    summaryRef,
+    goldCost,
+    handleAmountPaidChange,
+    isFormFilled,
+    handleCalculate,
+  }
 }
